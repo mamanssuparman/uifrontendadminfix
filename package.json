@@ -1,0 +1,18 @@
+{
+  "name": "ui-frontendadminpanel",
+  "version": "1.0.0",
+  "description": "Project Admin Panel Web SMK N 3 Banjar",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "npx tailwindcss -i ./src/input.css -o ./dist/output.css --watch"
+  },
+  "author": "OmenArt",
+  "license": "ISC",
+  "devDependencies": {
+    "tailwindcss": "^3.3.4"
+  },
+  "dependencies": {
+    "flowbite": "^1.8.1"
+  }
+}
