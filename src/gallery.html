@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gallery | S-Panel</title>
+    <link href="/dist/output.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <script src="/dist/js/jquery-3.7.0.js"></script>
+    <script src="/dist/js/jquery.dataTables.min.js"></script>
+    <script src="/dist/js/dataTables.tailwindcss.min.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="/dist/css/dataTables.tailwindcss.min.css">
+    <style>
+        .scrollbar-hidden::-webkit-scrollbar {
+            display: none;
+        }
+
+        #toggle {
+            position: relative;
+            width: 30px;
+            height: 20px;
+            background-color: rgb(175, 26, 26);
+            /* -webkit-appearance: none; */
+            outline: none;
+            box-shadow: 0 2px 7px #fff;
+            border-radius: 20px;
+            transition: background 0.9s;
+        }
+
+        #toggle:checked {
+            background-color: rgb(17, 126, 84);
+        }
+
+        #toggle::before {
+            content: '';
+            position: absolute;
+            top: 2.3px;
+            left: 2px;
+            background-color: #fff;
+            border-radius: 50%;
+            width: 15px;
+            height: 15px;
+            transition: 0.5s;
+        }
+
+        #toggle:checked::before {
+            left: 13px;
+        }
+    </style>
+</head>
+
+<body class="bg-gray-100">
+    <nav class="fixed top-0 z-50 w-full bg-blue-800">
+        <div class="px-3 py-3 lg:px-5 lg:pl-3">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center justify-start">
+                    <button data-drawer-target="logo-sidebar" data-drawer-toggle="logo-sidebar"
+                        aria-controls="logo-sidebar" type="button"
+                        class="inline-flex items-center p-2 text-sm text-gray-500 rounded-lg sm:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 ">
+                        <span class="sr-only">Open sidebar</span>
+                        <svg class="w-6 h-6" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path clip-rule="evenodd" fill-rule="evenodd"
+                                d="M2 4.75A.75.75 0 012.75 4h14.5a.75.75 0 010 1.5H2.75A.75.75 0 012 4.75zm0 10.5a.75.75 0 01.75-.75h7.5a.75.75 0 010 1.5h-7.5a.75.75 0 01-.75-.75zM2 10a.75.75 0 01.75-.75h14.5a.75.75 0 010 1.5H2.75A.75.75 0 012 10z">
+                            </path>
+                        </svg>
+                    </button>
+                    <a href="#" class="flex ml-2 md:mr-24">
+                        <img src="/dist/image/logosmk.png" class="h-8 mr-3" alt="S-Panel-Logo" />
+                        <span
+                            class="self-center text-xl font-semibold text-white sm:text-2xl whitespace-nowrap">S-Panel</span>
+                    </a>
+                </div>
+                <div class="flex items-center">
+                    <div class="flex items-center ml-3">
+                        <div>
+                            <button type="button"
+                                class="flex text-sm bg-gray-800 rounded-full focus:ring-4 focus:ring-gray-300 "
+                                aria-expanded="false" data-dropdown-toggle="dropdown-user">
+                                <span class="sr-only">Open user menu</span>
+                                <img class="w-8 h-8 rounded-full" src="/dist/image/logosmk.png" alt="user photo">
+                            </button>
+                        </div>
+                        <div class="z-50 hidden my-4 text-base list-none bg-white divide-y divide-gray-100 rounded shadow "
+                            id="dropdown-user">
+                            <div class="px-4 py-3" role="none">
+                                <p class="text-sm text-gray-900 " role="none">
+                                    Nama Users
+                                </p>
+                                <p class="text-sm font-medium text-gray-900 truncate " role="none">
+                                    Username / Email
+                                </p>
+                            </div>
+                            <ul class="py-1" role="none">
+                                <li>
+                                    <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 "
+                                        role="menuitem">Sign
+                                        out</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <aside id="logo-sidebar"
+        class="fixed top-0 left-0 z-40 w-64 h-screen pt-20 transition-transform -translate-x-full bg-white border-r border-gray-200 sm:translate-x-0 "
+        aria-label="Sidebar">
+        <div class="h-full px-3 pb-4 overflow-y-auto bg-white ">
+            <ul class="space-y-2 font-medium">
+                <li>
+                    <a href="#" class="flex items-center p-2 rounded-lg text-slate-900 hover:bg-gray-100 group">
+                        <i class="font-semibold bi bi-columns-gap text-slate-900"></i>
+                        <span class="ml-3">Dashboard</span>
+                    </a>
+                </li>
+                <li class="w-full h-[1px] bg-slate-200">
+                </li>
+                <li class="ml-2 text-slate-300">
+                    <span>Master</span>
+                </li>
+                <li>
+                    <a href="#" class="flex items-center p-2 text-gray-900 rounded-lg hover:bg-gray-100 ">
+                        <i class="font-semibold bi bi-building-gear text-slate-900"></i>
+                        <span class="flex-1 ml-3 whitespace-nowrap">Profile</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="flex items-center p-2 text-gray-900 rounded-lg hover:bg-gray-100 ">
+                        <i class="bi bi-people-fill text-slate-900"></i>
+                        <span class="flex-1 ml-3 whitespace-nowrap">GTK</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="flex items-center p-2 text-gray-900 rounded-lg hover:bg-gray-100 ">
+                        <i class="bi bi-archive text-slate-900"></i>
+                        <span class="flex-1 ml-3 whitespace-nowrap text-slate-900">Mapel</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="flex items-center p-2 text-gray-900 rounded-lg hover:bg-gray-100 ">
+                        <i class="bi bi-signpost-2 text-slate-900"></i>
+                        <span class="flex-1 ml-3 whitespace-nowrap text-slate-900">Program Studi</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="flex items-center p-2 text-gray-900 rounded-lg hover:bg-gray-100 ">
+                        <i class="text-slate-900 bi bi-tools"></i>
+                        <span class="flex-1 ml-3 whitespace-nowrap text-slate-900">Ekstrakurikuler</span>
+                    </a>
+                </li>
+                <li class="w-full h-[1px] bg-slate-200"></li>
+                <li class="ml-2 text-slate-300">
+                    Article / Berita
+                </li>
+                <li>
+                    <a href="#" class="flex items-center p-2 text-gray-900 rounded-lg hover:bg-gray-100 ">
+                        <i class="bi bi-clipboard-pulse"></i>
+                        <span class="flex-1 ml-3 whitespace-nowrap">Category Article</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="flex items-center p-2 text-gray-900 rounded-lg hover:bg-gray-100 ">
+                        <i class="bi bi-postcard-heart-fill"></i>
+                        <span class="flex-1 ml-3 whitespace-nowrap">Article</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="flex items-center p-2 text-gray-900 rounded-lg hover:bg-gray-100 ">
+                        <i class="bi bi-chat-square-text-fill"></i>
+                        <span class="flex-1 ml-3 whitespace-nowrap">Comments</span>
+                    </a>
+                </li>
+                <li class="h-[1px] w-full bg-slate-300"></li>
+                <li class="ml-2 text-slate-300">
+                    Media
+                </li>
+                <li>
+                    <a href="#" class="flex items-center p-2 text-gray-900 rounded-lg hover:bg-gray-100 ">
+                        <i class="bi bi-film"></i>
+                        <span class="flex-1 ml-3 whitespace-nowrap">Gallery</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="flex items-center p-2 text-gray-900 rounded-lg hover:bg-gray-100 ">
+                        <i class="bi bi-camera-reels"></i>
+                        <span class="flex-1 ml-3 whitespace-nowrap">Video</span>
+                    </a>
+                </li>
+                <li class="h-[1px] w-full bg-slate-300"></li>
+                <li>
+                    <a href="#" class="flex items-center p-2 text-gray-900 rounded-lg hover:bg-gray-100 ">
+                        <i class="bi bi-person-vcard-fill"></i>
+                        <span class="flex-1 ml-3 whitespace-nowrap">Profile User</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </aside>
+
+    <div class="sm:ml-60 mb-16">
+        <div class="flex flex-row mt-10 bg-white shadow-md">
+            <div class="flex flex-col px-8 py-4 mt-4 ml-4">
+                <div class="text-xl font-semibold text-blue-800">
+                    Media
+                </div>
+                <div class="text-slate-500 ">
+                    <div class="flex flex-row">
+                        <div class="breadcumb2">
+                            Gallery /
+                        </div>
+                        <div id="breadcumb2" class="ml-2 text-slate-900">
+                            Index
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="h-16 p-4 mx-8 mt-8 bg-blue-800 rounded-tl-lg rounded-tr-lg">
+            <div class="flex flex-row justify-between">
+                <div class="flex font-semibold text-white">
+                    Data Gallery
+                </div>
+
+            </div>
+        </div>
+        <div class="p-4 mx-8 bg-white rounded-bl-lg rounded-br-lg flex flex-nowrap gap-3">
+            <div class="w-full overflow-y-auto">
+                <table id="example" class="display" style="width:100%">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Foto</th>
+                            <th>Status</th>
+                            <th>Option</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td><img src="../dist/image/ki-1.jpg" alt="foto" width="200" class="rounded-md"></td>
+                            <td>
+                                <input type="checkbox" title="Dead Part" id="toggle" checked class="">
+                            </td>
+                            <td>
+                                <i class="px-2 py-1 text-white bg-blue-700 rounded-md bi bi-list"></i>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td><img src="../dist/image/ki-1.jpg" alt="foto" width="200" class="rounded-md"></td>
+                            <td>
+                                <input type="checkbox" title="Dead Part" id="toggle" class="">
+                            </td>
+                            <td>
+                                <i class="px-2 py-1 text-white bg-blue-700 rounded-md bi bi-list"></i>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>3</td>
+                            <td><img src="../dist/image/ki-1.jpg" alt="foto" width="200" class="rounded-md"></td>
+                            <td>
+                                <input type="checkbox" title="Dead Part" id="toggle" class="">
+                            </td>
+                            <td>
+                                <i class="px-2 py-1 text-white bg-blue-700 rounded-md bi bi-list"></i>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>4</td>
+                            <td><img src="../dist/image/ki-1.jpg" alt="foto" width="200" class="rounded-md"></td>
+                            <td>
+                                <input type="checkbox" title="Dead Part" id="toggle" class="">
+                            </td>
+                            <td>
+                                <i class="px-2 py-1 text-white bg-blue-700 rounded-md bi bi-list"></i>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="rounded-md border-slate-300 border px-4 py-4 w-full">
+                <form action="#" method="post">
+                    <div class="mb-6">
+                        <label for="judul" class="block mb-2 text-sm font-medium text-gray-900">Judul Foto</label>
+                        <input type="text" id="judul" name="judul"
+                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
+                            required>
+                    </div>
+                    <div class="mb-6">
+                        <label for="deskripsi" class="block mb-2 text-sm font-medium text-gray-900">Deskripsi /
+                            Keterangan</label>
+                        <textarea id="deskripsi" rows="4" name="deskripsi"
+                            class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500"></textarea>
+                    </div>
+                    <div class="mb-6">
+                        <label class="block mb-2 text-sm font-medium text-gray-900" for="file_input">Foto</label>
+                        <input
+                            class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 focus:outline-none"
+                            id="file_input" type="file" onchange="previewImage(event)" name="foto">
+                    </div>
+                    <div class="mb-6 rounded-md border-slate-300">
+                        <img src="../dist/image/jk-placeholder-image.jpg" alt="" width="200" class="rounded-md" id="preview">
+                    </div>
+                    <button type="button"
+                        class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800 float-right">
+                        <i class="bi bi-plus"></i> Add Photo</button>
+                </form>
+            </div>
+        </div>
+
+    </div>
+
+
+
+    <script>
+        function previewImage(event) {
+            var reader = new FileReader();
+            reader.onload = function () {
+                var output = document.getElementById('preview');
+                output.src = reader.result;
+            }
+            reader.readAsDataURL(event.target.files[0]);
+        }
+    </script>
+
+    <script src="/../../node_modules/flowbite/dist/flowbite.min.js"></script>
+    <script type="text/javascript">
+        new DataTable('#example');
+    </script>
+</body>
+
+</html>
