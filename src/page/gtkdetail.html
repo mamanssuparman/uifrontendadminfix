@@ -1,0 +1,434 @@
+<!doctype html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="/dist/output.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+  <script src="/dist/js/jquery-3.7.0.js"></script>
+  <script src="/dist/js/jquery.dataTables.min.js"></script>
+  <script src="/dist/js/dataTables.tailwindcss.min.js"></script>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="/dist/css/dataTables.tailwindcss.min.css">
+  <style>
+    .scrollbar-hidden::-webkit-scrollbar {
+      display: none;
+    }
+    #toggle {
+      position: relative;
+      width: 30px;
+      height: 20px;
+      background-color: rgb(175, 26, 26);
+      /* -webkit-appearance: none; */
+      outline: none;
+      box-shadow: 0 2px 7px #fff;
+      border-radius: 20px;
+      transition: background 0.9s;
+    }
+
+    #toggle:checked {
+      background-color: rgb(17, 126, 84);
+    }
+
+    #toggle::before {
+      content: '';
+      position: absolute;
+      top: 2.3px;
+      left: 2px;
+      background-color: #fff;
+      border-radius: 50%;
+      width: 15px;
+      height: 15px;
+      transition: 0.5s;
+    }
+
+    #toggle:checked::before {
+      left: 13px;
+    }
+  </style>
+</head>
+
+<body class="bg-gray-100">
+
+  <nav class="fixed top-0 z-50 w-full bg-blue-800">
+    <div class="px-3 py-3 lg:px-5 lg:pl-3">
+      <div class="flex items-center justify-between">
+        <div class="flex items-center justify-start">
+          <button data-drawer-target="logo-sidebar" data-drawer-toggle="logo-sidebar" aria-controls="logo-sidebar"
+            type="button"
+            class="inline-flex items-center p-2 text-sm text-gray-500 rounded-lg sm:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 ">
+            <span class="sr-only">Open sidebar</span>
+            <svg class="w-6 h-6" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20"
+              xmlns="http://www.w3.org/2000/svg">
+              <path clip-rule="evenodd" fill-rule="evenodd"
+                d="M2 4.75A.75.75 0 012.75 4h14.5a.75.75 0 010 1.5H2.75A.75.75 0 012 4.75zm0 10.5a.75.75 0 01.75-.75h7.5a.75.75 0 010 1.5h-7.5a.75.75 0 01-.75-.75zM2 10a.75.75 0 01.75-.75h14.5a.75.75 0 010 1.5H2.75A.75.75 0 012 10z">
+              </path>
+            </svg>
+          </button>
+          <a href="#" class="flex ml-2 md:mr-24">
+            <img src="/dist/image/logosmk.png" class="h-8 mr-3" alt="S-Panel-Logo" />
+            <span class="self-center text-xl font-semibold text-white sm:text-2xl whitespace-nowrap">S-Panel</span>
+          </a>
+        </div>
+        <div class="flex items-center">
+          <div class="flex items-center ml-3">
+            <div>
+              <button type="button" class="flex text-sm bg-gray-800 rounded-full focus:ring-4 focus:ring-gray-300 "
+                aria-expanded="false" data-dropdown-toggle="dropdown-user">
+                <span class="sr-only">Open user menu</span>
+                <img class="w-8 h-8 rounded-full" src="/dist/image/logosmk.png" alt="user photo">
+              </button>
+            </div>
+            <div class="z-50 hidden my-4 text-base list-none bg-white divide-y divide-gray-100 rounded shadow "
+              id="dropdown-user">
+              <div class="px-4 py-3" role="none">
+                <p class="text-sm text-gray-900 " role="none">
+                  Nama Users
+                </p>
+                <p class="text-sm font-medium text-gray-900 truncate " role="none">
+                  Username / Email
+                </p>
+              </div>
+              <ul class="py-1" role="none">
+                <li>
+                  <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 " role="menuitem">Sign
+                    out</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <aside id="logo-sidebar"
+    class="fixed top-0 left-0 z-40 w-64 h-screen pt-20 transition-transform -translate-x-full bg-white border-r border-gray-200 sm:translate-x-0 "
+    aria-label="Sidebar">
+    <div class="h-full px-3 pb-4 overflow-y-auto bg-white ">
+      <ul class="space-y-2 font-medium">
+        <li>
+          <a href="#" class="flex items-center p-2 rounded-lg text-slate-900 hover:bg-gray-100 group">
+            <i class="font-semibold bi bi-columns-gap text-slate-900"></i>
+            <span class="ml-3">Dashboard</span>
+          </a>
+        </li>
+        <li class="w-full h-[1px] bg-slate-200">
+        </li>
+        <li class="ml-2 text-slate-300">
+          <span>Master</span>
+        </li>
+        <li>
+          <a href="#" class="flex items-center p-2 text-gray-900 rounded-lg hover:bg-gray-100 ">
+            <i class="font-semibold bi bi-building-gear text-slate-900"></i>
+            <span class="flex-1 ml-3 whitespace-nowrap">Profile</span>
+          </a>
+        </li>
+        <li>
+          <a href="#" class="flex items-center p-2 text-gray-900 rounded-lg hover:bg-gray-100 ">
+            <i class="bi bi-people-fill text-slate-900"></i>
+            <span class="flex-1 ml-3 whitespace-nowrap">GTK</span>
+          </a>
+        </li>
+        <li>
+          <a href="#" class="flex items-center p-2 text-gray-900 rounded-lg hover:bg-gray-100 ">
+            <i class="bi bi-archive text-slate-900"></i>
+            <span class="flex-1 ml-3 whitespace-nowrap text-slate-900">Mapel</span>
+          </a>
+        </li>
+        <li>
+          <a href="#" class="flex items-center p-2 text-gray-900 rounded-lg hover:bg-gray-100 ">
+            <i class="bi bi-signpost-2 text-slate-900"></i>
+            <span class="flex-1 ml-3 whitespace-nowrap text-slate-900">Program Studi</span>
+          </a>
+        </li>
+        <li>
+          <a href="#" class="flex items-center p-2 text-gray-900 rounded-lg hover:bg-gray-100 ">
+            <i class="text-slate-900 bi bi-tools"></i>
+            <span class="flex-1 ml-3 whitespace-nowrap text-slate-900">Ekstrakurikuler</span>
+          </a>
+        </li>
+        <li class="w-full h-[1px] bg-slate-200"></li>
+        <li class="ml-2 text-slate-300">
+          Article / Berita
+        </li>
+        <li>
+          <a href="#" class="flex items-center p-2 text-gray-900 rounded-lg hover:bg-gray-100 ">
+            <i class="bi bi-clipboard-pulse"></i>
+            <span class="flex-1 ml-3 whitespace-nowrap">Category Article</span>
+          </a>
+        </li>
+        <li>
+          <a href="#" class="flex items-center p-2 text-gray-900 rounded-lg hover:bg-gray-100 ">
+            <i class="bi bi-postcard-heart-fill"></i>
+            <span class="flex-1 ml-3 whitespace-nowrap">Article</span>
+          </a>
+        </li>
+        <li>
+          <a href="#" class="flex items-center p-2 text-gray-900 rounded-lg hover:bg-gray-100 ">
+            <i class="bi bi-chat-square-text-fill"></i>
+            <span class="flex-1 ml-3 whitespace-nowrap">Comments</span>
+          </a>
+        </li>
+        <li class="h-[1px] w-full bg-slate-300"></li>
+        <li class="ml-2 text-slate-300">
+          Media
+        </li>
+        <li>
+          <a href="#" class="flex items-center p-2 text-gray-900 rounded-lg hover:bg-gray-100 ">
+            <i class="bi bi-film"></i>
+            <span class="flex-1 ml-3 whitespace-nowrap">Gallery</span>
+          </a>
+        </li>
+        <li>
+          <a href="#" class="flex items-center p-2 text-gray-900 rounded-lg hover:bg-gray-100 ">
+            <i class="bi bi-camera-reels"></i>
+            <span class="flex-1 ml-3 whitespace-nowrap">Video</span>
+          </a>
+        </li>
+        <li class="h-[1px] w-full bg-slate-300"></li>
+        <li>
+          <a href="#" class="flex items-center p-2 text-gray-900 rounded-lg hover:bg-gray-100 ">
+            <i class="bi bi-person-vcard-fill"></i>
+            <span class="flex-1 ml-3 whitespace-nowrap">Profile User</span>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </aside>
+
+<section>
+  <div class="sm:ml-60">
+    <div class="flex flex-row mt-10 bg-white shadow-md">
+      <div class="flex flex-col px-8 py-4 mt-4 ml-4">
+        <div class="text-xl font-semibold text-blue-800">
+          Master
+        </div>
+        <div class="text-slate-500 ">
+          <div class="flex flex-row">
+            <div class="breadcumb2">
+              GTK /
+            </div>
+            <div id="breadcumb2" class="ml-2 text-slate-900">
+              Detail GTK
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="py-2 p-4 mx-8 mt-8 bg-blue-800 rounded-tl-lg rounded-tr-lg">
+      <div class="flex flex-row items-center justify-between">
+        <div class="flex font-semibold text-white">
+          Form Detail GTK
+        </div>
+        <div class="flex">
+            <a href="/src/page/gtk.html" class="px-5 py-3 font-semibold text-slate-700  bg-yellow-300 hover:bg-yellow-400 rounded-lg"><i class="bi bi-arrow-counterclockwise"></i>Kembali</a>
+        </div>
+      </div>
+    </div>
+    <div class="p-4 mx-8 bg-white rounded-bl-lg rounded-br-lg">
+      <div class="flex gap-9 mb-5">
+        <button type="button" id="btn_profile" class="text-blue-800">Profile</button>
+        <button type="button" id="btn_ubahpassword" class="">Ubah Password</button>
+      </div>
+      <hr class="border border-slate-300 mb-5">
+      <div id="profile" class="">
+        <form action="" method="post">
+            <div class="flex flex-wrap gap-3 mb-5">
+                <div class="w-full sm:w-1/2">
+                    <div class="mb-5">
+                        <label for="nuptk" class="block">NUPTK</label>
+                        <input id="nuptk" name="nuptk" type="number" class="w-full rounded-lg border border-slate-300 ">
+                    </div>
+                    <div class="mb-5">
+                        <label for="nip" class="block">NIP</label>
+                        <input id="nip" name="nip" type="number" class="w-full rounded-lg border border-slate-300 ">
+                    </div>
+                    <div class="mb-5">
+                        <label for="nama" class="block">Nama</label>
+                        <input id="nama" type="text" class="w-full rounded-lg border border-slate-300">
+                    </div>
+                    <div class="mb-5">
+                            <label for="jenisKelamin" class=" block">Jenis Kelamin</label>
+                            <select id="jenisKelamin" name="jenisKelamin" class="w-full bg-white border border-slate-300  rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2">
+                                <option selected>--Pilih Jenis Kelamin--</option>
+                                <option value="L">Laki Laki</option>
+                                <option value="P">Perempuan</option>
+                            </select>
+                    </div>
+                    <div class="mb-5">
+                        <label  for="alamat" class=" block">Alamat</label>
+                        <textarea id="alamat" name="alamat" class="w-full  p-3 border-slate-300 rounded-lg" rows="8"></textarea>
+                    </div>
+                </div>
+                <div class="w-full sm:flex-1">
+                    <div class="mb-5">
+                        <label for="pendidikanTerakhir"  class=" block">Pendidikan Terakhir</label>
+                        <select id="pendidikanTerakhir" name="pendidikanTerakhir" class="w-full bg-white border border-slate-300  rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2">
+                            <option selected>--Pilih Pendidikan Terakhir--</option>
+                            <option value="s1">S1</option>
+                            <option value="s2">S2</option>
+                            <option value="s3">S3</option>
+                            <option value="d1">D1</option>
+                            <option value="d2">D2</option>
+                            <option value="d3">D3</option>
+                        </select>
+                    </div>
+                    <div class="mb-5">
+                        <label for="jabatan" class=" block">Jabatan</label>
+                        <select id="jabatan" name="jabatan" class="w-full bg-white border border-slate-300  rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2">
+                            <option selected>--Pilih Jabatan--</option>
+                            <option value="guru">Guru</option>
+                            <option value="kepalaSekolah">Kepala Sekolah</option>
+                            <option value="tenagaKependidikan">Tenaga Kependidikan</option>
+                        </select>
+                    </div>
+                    <div class="mb-5">
+                        <label for="tugasTambahan" class=" block">Tugas Tambahan</label>
+                        <select id="tugasTambahan" name="tugasTambahan" class="w-full bg-white border border-slate-300  rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2">
+                            <option selected>--Pilih Tugas Tambahan--</option>
+                            <option value="">--</option>
+                            <option value="">--</option>
+                        </select>
+                    </div>
+                    <div class="mb-5">
+                        <label for="role" class=" block">Role</label>
+                        <select id="role" name="role" class="w-full bg-white border border-slate-300  rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2">
+                            <option selected>--Pilih Role--</option>
+                            <option value="guru">Guru</option>
+                            <option value="admin">Admin</option>
+                        </select>
+                    </div>
+                    <div class="mb-5">
+                        <label for="fotoProfile" class=" block">Foto Profile</label>
+                        <input id="fotoProfile" name="fotoProfile" type="file" class="w-full rounded-lg border selec border-slate-300">
+                    </div>
+                    <div class="mb5">
+                      <img src="/dist/image/kepala-sekolah.jpg" class="rounded-lg" width="120" alt="">
+                    </div>
+                </div>
+            </div>
+            
+            <div class="w-full  p-5 border border-slate-300 rounded-lg">
+            <div class="relative overflow-x-auto sm:rounded-lg">
+              <div class="mb-9">
+                <div class="flex items-center justify-between">
+                  <h3 class="font-semibold text-slate-600 ">Mapel Ajar</h3>
+                  <button type="button" class="mt-9 bg-green-600 hover:bg-green-700 rounded-lg text-white font-semibold px-5 py-3">Choose Mapel</button>
+                </div>
+              </div>
+              <table class="w-full text-sm text-left text-blue-100 dark:text-blue-100">
+                  <thead class="text-xs text-black uppercase">
+                      <tr>
+                          <th scope="col" class="px-6 py-3">
+                              #
+                          </th>
+                          <th scope="col" class="px-6 py-3">
+                             Mapel
+                          </th>
+                          <th scope="col" class="px-6 py-3">
+                              Action
+                          </th>
+                      </tr>
+                  </thead>
+                  <tbody>
+                      <tr class="bg-transparent text-black border-0 border-t border-b">
+                          <th scope="row" class="px-6 py-4 font-medium whitespace-nowrap ">
+                              1
+                          </th>
+                          <td class="px-6 py-4">
+                              Produktif RPL
+                          </td>
+                          <td class="px-6 py-4">
+                              <a href="" class="bg-red-600 py-2 px-4 rounded-lg  text-white "><i class="bi bi-x-lg"></i></a>    
+                          </td>
+                      </tr>
+                      <tr class="bg-transparent text-black border-0 border-t border-b">
+                          <th scope="row" class="px-6 py-4 font-medium whitespace-nowrap ">
+                              2
+                          </th>
+                          <td class="px-6 py-4">
+                              Pendidikan Agama
+                          </td>
+                          <td class="px-6 py-4">
+                              <a href="" class="bg-red-600 py-2 px-4 rounded-lg  text-white "><i class="bi bi-x-lg"></i></a>    
+                          </td>
+                      </tr>
+                      <tr class="bg-transparent text-black border-0 border-t border-b">
+                          <th scope="row" class="px-6 py-4 font-medium whitespace-nowrap ">
+                              3
+                          </th>
+                          <td class="px-6 py-4">
+                              PPKN
+                          </td>
+                          <td class="px-6 py-4">
+                              <a href="" class="bg-red-600 py-2 px-4 rounded-lg  text-white "><i class="bi bi-x-lg"></i></a>    
+                          </td>
+                      </tr>
+                  </tbody>
+              </table>
+            </div>
+  
+            </div>
+  
+          <div class="flex justify-end">
+              <button type="submit" class="mt-9 bg-blue-800 hover:bg-blue-900 rounded-lg text-white font-semibold px-5 py-3"><i class="bi bi-database-down"></i> Update</button>
+          </div>
+          
+        </form>
+      </div>
+      <div id="ubah_password" class="hidden">
+        <form action="" method="post" class="sm:w-1/2"> 
+            <div class="mb-5 ">
+              <label for="password" class="block">Password Baru</label>
+              <input id="password" name="password" type="password" class="w-full rounded-lg border border-slate-300 ">
+            </div>
+            <div class="mb-5">
+                <label for="password" class="block">Cocokan Password</label>
+                <input id="password" name="cocokan_password" type="password" class="w-full rounded-lg border border-slate-300 ">
+            </div>
+            <div class="flex justify-end">
+              <button type="submit" class="mt-9 bg-blue-800 hover:bg-blue-900 rounded-lg text-white font-semibold px-5 py-3"><i class="bi bi-database-down"></i> Update Password</button>
+            </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+  <script src="/../../node_modules/flowbite/dist/flowbite.min.js"></script>
+  <script type="text/javascript">
+    new DataTable('#example');
+  </script>
+
+<!-- tab switching -->
+  <script>
+      // mengambul semua elemet
+      const btn_profile = document.getElementById('btn_profile');
+      const btn_ubahpassword = document.getElementById('btn_ubahpassword');
+
+      const content_profile = document.getElementById('profile');
+      const content_ubah_password = document.getElementById('ubah_password');
+
+      btn_profile.addEventListener('click', function(){
+        content_profile.style.display = 'block';
+          // Tandai tombol "Profile" sebagai aktif
+          btn_profile.classList.add('text-blue-800');
+          btn_ubahpassword.classList.remove('text-blue-800');
+        content_ubah_password.style.display = 'none';
+      });
+
+      btn_ubahpassword.addEventListener('click', function(){
+        content_profile.style.display = 'none';
+        btn_ubahpassword.classList.add('text-blue-800');
+        btn_profile.classList.remove('text-blue-800');
+        content_ubah_password.style.display = "block";
+      });
+
+
+  </script>
+<!-- end tab switching -->
+
+</body>
+
+</html>
