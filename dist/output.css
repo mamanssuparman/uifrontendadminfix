@@ -1104,6 +1104,10 @@ input:checked + .toggle-bg {
   z-index: 50;
 }
 
+.float-right {
+  float: right;
+}
+
 .mx-8 {
   margin-left: 2rem;
   margin-right: 2rem;
@@ -1118,6 +1122,10 @@ input:checked + .toggle-bg {
   margin-bottom: 0.25rem;
 }
 
+.mb-16 {
+  margin-bottom: 4rem;
+}
+
 .mb-2 {
   margin-bottom: 0.5rem;
 }
@@ -1126,12 +1134,17 @@ input:checked + .toggle-bg {
   margin-bottom: 1rem;
 }
 
+<<<<<<< HEAD
 .mb-5 {
   margin-bottom: 1.25rem;
 }
 
 .mb-9 {
   margin-bottom: 2.25rem;
+=======
+.mb-6 {
+  margin-bottom: 1.5rem;
+>>>>>>> gallery
 }
 
 .ml-2 {
@@ -1144,6 +1157,10 @@ input:checked + .toggle-bg {
 
 .ml-4 {
   margin-left: 1rem;
+}
+
+.mr-2 {
+  margin-right: 0.5rem;
 }
 
 .mr-3 {
@@ -1167,6 +1184,7 @@ input:checked + .toggle-bg {
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 .-mb-px {
   margin-bottom: -1px;
 }
@@ -1177,6 +1195,14 @@ input:checked + .toggle-bg {
 .mt-9 {
   margin-top: 2.25rem;
 >>>>>>> gtk
+=======
+.mt-5 {
+  margin-top: 1.25rem;
+}
+
+.mt-9 {
+  margin-top: 2.25rem;
+>>>>>>> gallery
 }
 
 .block {
@@ -1361,6 +1387,13 @@ input:checked + .toggle-bg {
   flex-wrap: wrap;
 }
 
+<<<<<<< HEAD
+=======
+.flex-nowrap {
+  flex-wrap: nowrap;
+}
+
+>>>>>>> gallery
 .items-start {
   align-items: flex-start;
 }
@@ -1393,8 +1426,13 @@ input:checked + .toggle-bg {
   gap: 0.75rem;
 }
 
+<<<<<<< HEAD
 .gap-9 {
   gap: 2.25rem;
+=======
+.gap-16 {
+  gap: 4rem;
+>>>>>>> gallery
 }
 
 .space-x-2 > :not([hidden]) ~ :not([hidden]) {
@@ -1562,12 +1600,15 @@ input:checked + .toggle-bg {
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 .border-transparent {
   border-color: transparent;
 }
 
 =======
 >>>>>>> gtk
+=======
+>>>>>>> gallery
 .bg-blue-700 {
   --tw-bg-opacity: 1;
   background-color: rgb(26 86 219 / var(--tw-bg-opacity));
@@ -1586,6 +1627,11 @@ input:checked + .toggle-bg {
 .bg-gray-200 {
   --tw-bg-opacity: 1;
   background-color: rgb(229 231 235 / var(--tw-bg-opacity));
+}
+
+.bg-gray-50 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(249 250 251 / var(--tw-bg-opacity));
 }
 
 .bg-gray-800 {
@@ -1676,8 +1722,13 @@ input:checked + .toggle-bg {
   padding: 1rem;
 }
 
+<<<<<<< HEAD
 .p-5 {
   padding: 1.25rem;
+=======
+.p-12 {
+  padding: 3rem;
+>>>>>>> gallery
 }
 
 .px-2 {
@@ -1735,8 +1786,14 @@ input:checked + .toggle-bg {
   padding-bottom: 1rem;
 }
 
+<<<<<<< HEAD
 .pb-2 {
   padding-bottom: 0.5rem;
+=======
+.py-6 {
+  padding-top: 1.5rem;
+  padding-bottom: 1.5rem;
+>>>>>>> gallery
 }
 
 .pb-4 {
@@ -1755,8 +1812,17 @@ input:checked + .toggle-bg {
   padding-top: 5rem;
 }
 
+<<<<<<< HEAD
 .text-left {
   text-align: left;
+=======
+.pb-6 {
+  padding-bottom: 1.5rem;
+}
+
+.pb-12 {
+  padding-bottom: 3rem;
+>>>>>>> gallery
 }
 
 .text-center {
@@ -2133,6 +2199,11 @@ input:checked + .toggle-bg {
 :is(.dark .dark\:hover\:text-white:hover) {
   --tw-text-opacity: 1;
   color: rgb(255 255 255 / var(--tw-text-opacity));
+}
+
+:is(.dark .dark\:focus\:ring-blue-800:focus) {
+  --tw-ring-opacity: 1;
+  --tw-ring-color: rgb(30 66 159 / var(--tw-ring-opacity));
 }
 
 @media (min-width: 640px) {
